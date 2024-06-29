@@ -30,20 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-              height: 300,
-              width: 300,
-              child: Lottie.asset(
-                'assets/splash.json',
-                fit: BoxFit.fill,
-              )),
-          SizedBox(
-            height: 20,
+            height: 300,
+            width: 300,
+            child: Lottie.asset(
+              'assets/splash.json',
+              fit: BoxFit.fill,
+            ),
           ),
-          Text(
-            'Calculator',
-            style: TextStyle(
-                color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
-          )
         ],
       ),
     );
