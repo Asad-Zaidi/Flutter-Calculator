@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Table(
                 children: [
                   TableRow(children: [
-                    myButton("x^y", 1, yellow),
+                    myButton("+/-", 1, yellow),
                     myButton("%", 1, yellow),
                     myButton("⌫", 1, yellow),
                     myButton("C", 1, yellow),
