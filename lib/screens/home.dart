@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+// import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,13 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Card(
       elevation: 10,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(50),
       ),
       child: Container(
         height: buttonHeight * 90,
         decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(50),
         ),
         child: MaterialButton(
           onPressed: () {},
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     myButton("7", 1, green),
                     myButton("8", 1, green),
                     myButton("9", 1, green),
-                    myButton("/", 1, yellow),
+                    myButton("÷", 1, yellow),
                   ]),
                   TableRow(children: [
                     myButton("4", 1, green),
