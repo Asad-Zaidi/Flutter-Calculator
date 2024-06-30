@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 // import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,11 +11,39 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String equation = "";
+  String expression = "";
   String result = "";
   String operator = "";
   Color yellow = Colors.yellow;
   Color red = Colors.red;
   Color green = Colors.orange;
+
+  buttonCal(String ButtonText) {
+    setState(() {
+      if (ButtonText == 'C') {
+        equation = '';
+        result = '';
+      } else if (ButtonText == 'AC') {
+        equation = equation.substring(0, equation.length - 1);
+        if (equation == '0') {
+          equation = '0';
+        }
+      } else if (ButtonText == '=') {
+        expression= equation;
+        expression = expression.replaceAll('x', '*');
+        expression = expression.replaceAll('÷', '/');
+        try {
+          Parser p = Parser();
+          Expression exp = p.parse(expression);
+          ContextModel cm = ContextModel();
+          result = '${exp.evaluate(EvaluationType.REAL, cm)}';
+        } catch (e) {
+          result = 'Error';
+        }
+        
+      }
+    });
+  }
 
   Widget myButton(String buttonText, double buttonHeight, Color buttonColor) {
     return Card(
@@ -44,10 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade700,
-        title: Text(
+        title: const Text(
           'Calculator App',
-          style:
-              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
       ),
@@ -68,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             style: const TextStyle(fontSize: 30, color: Colors.black),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
             thickness: 1,
             color: Colors.black,
@@ -77,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.90,
               child: Table(
                 children: [
@@ -127,7 +155,8 @@ class SuperscriptText extends StatelessWidget {
   final String baseText;
   final String superscriptText;
 
-  SuperscriptText({required this.baseText, required this.superscriptText});
+  const SuperscriptText(
+      {super.key, required this.baseText, required this.superscriptText});
 
   @override
   Widget build(BuildContext context) {
